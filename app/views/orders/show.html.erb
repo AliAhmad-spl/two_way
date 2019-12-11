@@ -15,15 +15,19 @@
 		<th>total</th>
 	</tr>
 	<% x = 1 %>
+	<% y = 1 %>
+
 	<%@products&.each do |product|%>
 	<tr>
 		<td><%= product.name %></td>
-		<td><input type="text" name="quantity" min="1" max="100" id="box1" oninput="calculate();"></td>
-		<td id="box2" oninput="calculate();"><%= product.price %></td>
+		<td><input type="number" name="quantity" min="1" max="100" id="box1_<%= y %>" oninput="calculate();"></td>
+		<td id="box2_<%= y %>" oninput=""><%= product.price %></td>
 		<td id="result_<%= x %>"><%= product.price %></td>
 	</tr>
 	<%= x = x + 1 %>
+	<%= y = y + 1 %>
 	<%end%>
+
 </table>
 <div id="last" style="display: none;" ><%= x-1 %></div>
 <div class="container">
@@ -57,22 +61,35 @@
  	});
  </script>
  <script>
+ 	$( document ).ready(function() {
+    	calculate();
+	});
+ 	// let plus = 0;
     function calculate() {
-        var myBox1 = document.getElementById('box1').value;
-        var myBox2 = document.getElementById('box2').innerText;
-       
-        var myResult = myBox1 * myBox2;
-        document.getElementById('result_1').innerText = myResult;
-        var last = parseInt(document.getElementById('last').innerText);
-       
         var i = 1;
+
         var plus = 0;
+
+        var last = parseInt(document.getElementById('last').innerText);
+
 		for (i = 1; i <= last; i++) {
-			console.log(i);
+
+	        var myBox1 = document.getElementById('box1_'+i).value;
+
+	        var myBox2 = document.getElementById('box2_'+i).innerText;
+
+	        var myResult = myBox1 * myBox2;
+	        // console.log(myResult);
+
+			document.getElementById('result_'+ i).innerText = myResult;
+
 		  plus +=  parseInt(document.getElementById('result_'+i).innerText);
-		}
 
         document.getElementById('grand_total').innerText = plus;
+		}
 
     }
+    // document.getElementById('grand_total').innerText = plus;
+
+
 </script>
