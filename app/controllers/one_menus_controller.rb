@@ -29,7 +29,7 @@ class OneMenusController < ApplicationController
 
     respond_to do |format|
       if @one_menu.save
-        format.html { redirect_to @one_menu, notice: 'One menu was successfully created.' }
+        format.html { redirect_to root_path, notice: 'One menu was successfully created.' }
         format.json { render :show, status: :created, location: @one_menu }
       else
         format.html { render :new }
@@ -57,7 +57,7 @@ class OneMenusController < ApplicationController
   def destroy
     @one_menu.destroy
     respond_to do |format|
-      format.html { redirect_to one_menus_url, notice: 'One menu was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'One menu was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
