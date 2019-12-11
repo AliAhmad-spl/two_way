@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="hotel">
+
 <p>
   <strong>Customer name:</strong>
   <%= @order.customer_name %>
@@ -25,13 +26,20 @@
 	<%end%>
 </table>
 <div id="last" style="display: none;" ><%= x-1 %></div>
-<div id="grand_total">0</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+	<span style="font-size: 40px;" > Grand total:</span> <span id="grand_total" class="pull-right" style="font-size: 30px;">0</span>
+
+</div>
+</div>
+</div>
 </div>
 <button id="print" class="btn btn-danger">Print recipte</button>
 
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to 'Edit', edit_order_path(@order), id: "1" %> |
+<%= link_to 'Back', orders_path, id: "2" %>
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -42,6 +50,9 @@
  	$('#print').click(function()
  	{
  		window.print();
+ 		document.getElementsById("1").setAttribute("class", "remove_button");
+ 		document.getElementsById("2").setAttribute("class", "remove_button"); 
+ 		document.getElementsById("print").setAttribute("class", "remove_button");  
  	});
  </script>
  <script>
