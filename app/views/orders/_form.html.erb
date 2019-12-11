@@ -1,5 +1,8 @@
 <div class="container">
 <%= form_with(model: order, local: true) do |form| %>
+  <div class="actions">
+    <%= form.submit 'Preview Order', :class => 'btn btn-success pull-right'  %>
+  </div>
   
   <% if order.errors.any? %>
     <div id="error_explanation">
@@ -63,11 +66,7 @@
 
 
 
-  <div class="actions">
-    <%= form.submit 'Preview Order', :class => 'btn btn-success pull-right'  %>
-  </div>
+
 <% end %>
 </div>
 
-   <%= link_to 'add new menu', new_one_menu_path, class: "btn btn-warning", style: "color: white;"%>
-    <%= link_to 'add new product', new_product_path, class: "btn btn-warning", style: "color: white;"%>
