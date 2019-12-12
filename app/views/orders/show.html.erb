@@ -8,7 +8,7 @@
 <div class="hotel">
 
 <p>
-  <strong>Customer name:</strong>
+  <strong>Table number:</strong>
   <%= @order.customer_name %>
 </p>
 <% @products = Product.where(id: @order.product_ids)%>
@@ -29,8 +29,8 @@
 		<td id="box2_<%= y %>" oninput=""><%= product.price %></td>
 		<td id="result_<%= x %>"><%= product.price %></td>
 	</tr>
-	<%= x = x + 1 %>
-	<%= y = y + 1 %>
+	<% x = x + 1 %>
+	<% y = y + 1 %>
 	<%end%>
 
 </table>
@@ -49,8 +49,7 @@
 
 <%= link_to 'Edit', edit_order_path(@order), id: "edit" %> 
 <%= link_to 'Back',  new_order_path, id: "back" %>
-<center><h3 style="font-style: oblique;">Thank you for visiting here</h3><p>onewaycafe||03007450910</p></center>
-<p class="pull-left">®webify solutions</p>
+<center><h4 style="font-style: oblique;">Thank you for visiting here</h4><p>onewaycafe|03216466017</p></center>
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
