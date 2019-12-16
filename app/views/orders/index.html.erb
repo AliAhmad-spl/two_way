@@ -16,7 +16,7 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Customer name</th>
+      <th>Table No</th>
       <th>Placed at</th>
       <th colspan="3"></th>
     </tr>
@@ -26,7 +26,7 @@
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.customer_name %></td>
-        <td><%= order.created_at.strftime("%I:%M %p") %></td>
+        <td><%= time_ago_in_words(order.created_at) %> ago</td>
         <td><%= link_to 'Show', order %></td>
         <% if current_user.admin? %>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
