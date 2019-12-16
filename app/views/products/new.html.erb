@@ -1,4 +1,4 @@
-<p class="navbar-text float-right">
+<p class="navbar-text pull-right">
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.
   <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link btn btn-success',style:'color: white' %> |
@@ -12,4 +12,4 @@
 
 <%= render 'form', product: @product %>
 
-<%= link_to 'Back', products_path %>
+

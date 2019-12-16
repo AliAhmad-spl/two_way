@@ -1,3 +1,4 @@
+<div class="container">
 <%= form_with(model: product, local: true) do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation">
@@ -10,21 +11,18 @@
       </ul>
     </div>
   <% end %>
-
+    <%= form.text_field :name ,class: "form-control", placeholder: "Enter product name"%>
+<br>
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <p><%= form.number_field :price ,class: "form-control", placeholder: "Enter price Rs"%></p> 
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
-  </div>
   <div class="field">
     <%= form.label :Menu %>
     <%= form.select(:one_menu_id, OneMenu.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-success" %>
   </div>
 <% end %>
+</div>
