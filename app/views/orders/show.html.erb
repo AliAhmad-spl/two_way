@@ -22,10 +22,10 @@
 	<% x = 1 %>
 	<% y = 1 %>
 
-	<%@products&.each do |product|%>
+	<%@products&.each_with_index do |product, index|%>
 	<tr>
 		<td><%= product.name %></td>
-		<td><input type="number" name="quantity" min="1" max="100" id="box1_<%= y %>" value="1" oninput="calculate();"></td>
+		<td><input type="number" name="quantity" min="1" max="100" id="box1_<%= y %>" value="<%= @order.quntities[index]%>" oninput="calculate();"></td>
 		<td id="box2_<%= y %>" oninput=""><%= product.price %></td>
 		<td id="result_<%= x %>"><%= product.price %></td>
 	</tr>

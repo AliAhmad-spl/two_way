@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_202251) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "product_ids", default: [], array: true
-    t.integer "quntity", default: 1
+    t.integer "quntities", default: [], array: true
   end
 
   create_table "products", force: :cascade do |t|

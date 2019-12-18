@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    
+    byebug
     @order = Order.new(order_params)
     respond_to do |format|
       if @order.save
@@ -75,6 +75,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:customer_name, :product_ids => [])
+      params.require(:order).permit(:customer_name, :quntities => [], :product_ids => [])
     end
 end
