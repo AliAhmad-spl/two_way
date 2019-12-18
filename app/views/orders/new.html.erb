@@ -12,6 +12,7 @@
  <%= link_to 'add new product', new_product_path, class: "btn btn-warning", style: "color: white;"%>
  <% if current_user.admin? %>
  	<%= link_to 'History', orders_path, class: "btn btn-warning", style: "color: white;" %>
+ 	<%= link_to 'All products', products_path, class: "btn btn-warning", style: "color: white;" %>
  <%end%>
 <div class="container">
 <h1>New Order</h1>
