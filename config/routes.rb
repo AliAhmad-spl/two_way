@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :expenses
   resources :orders
   resources :one_menus
   resources :products
