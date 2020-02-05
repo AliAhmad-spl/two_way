@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_18_173112) do
+ActiveRecord::Schema.define(version: 2020_02_05_183857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 2019_12_18_173112) do
     t.datetime "updated_at", null: false
     t.string "product_ids", default: [], array: true
     t.integer "quntities", default: [], array: true
+    t.integer "user_id"
+    t.integer "status", default: 0
+    t.boolean "customer"
+    t.string "contact_number"
+    t.string "address"
+    t.text "special_notes"
   end
 
   create_table "products", force: :cascade do |t|
@@ -55,6 +61,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_173112) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+    t.boolean "sale", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

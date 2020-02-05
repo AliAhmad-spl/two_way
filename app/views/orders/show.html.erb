@@ -25,7 +25,7 @@
 	<%@products&.each_with_index do |product, index|%>
 	<tr>
 		<td><%= product.name %></td>
-		<td><input type="number" name="quantity" min="1" max="100" id="box1_<%= y %>" value="<%= @order.quntities[index]%>" oninput="calculate();"></td>
+		<td><input type="number" name="quantity" min="1" max="100" id="box1_<%= y %>" value="<%= product.quntity %>" oninput="calculate();"></td>
 		<td id="box2_<%= y %>" oninput=""><%= product.price %></td>
 		<td id="result_<%= x %>"><%= product.price %></td>
 	</tr>
@@ -44,11 +44,10 @@
 </div>
 </div>
 </div>
-<button onclick="removebtn()" id="print" class="btn btn-danger">Print recipte</button>
+<% if current_user.sale? || current_user.admin?%>
+	<button onclick="removebtn()" id="print" class="btn btn-danger">Print recipte</button>
+<%end%>
 
-
-<%= link_to 'Edit', edit_order_path(@order), id: "edit" %> 
-<%= link_to 'Back',  new_order_path, id: "back" %>
 <center><h4 style="font-style: oblique;">Thank you for visiting here</h4><p>onewaycafe|03216466017</p></center>
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"

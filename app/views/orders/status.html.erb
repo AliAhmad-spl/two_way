@@ -1,0 +1,35 @@
+<% if @orders.present? %>
+<table class="table table-bordered">
+	<tbody>
+		<tr>
+			<th>Name</th>
+			<th>Contact Number</th>
+			<th>Address</th>
+			<th>Special Note</th>
+			<th>Status</th>
+			<th>Details</th>
+		</tr>
+		
+	<% @orders.each do |order|%>	
+	<tr>
+		<td><%= order.user.email.split('@').first %></td>
+		<td><%= order&.contact_number %></td>
+		<td><%= order&.address %></td>
+		<td><%= order&.special_notes %></td>
+		<% if order.status == "delivered" %>
+				<td ><span class="btn btn-success"><%= order&.status  %></span></td>
+			<% elsif order.status == "rejected" %>
+				<td ><span class="btn btn-danger"><%= order&.status  %></span></td>
+			<% elsif order.status == "accepted" %>
+				<td ><span class="btn btn-primary"><%= order&.status  %></span></td>
+			<%else%>
+				<td ><span class="btn btn-warning"><%= order&.status  %></span></td>
+			<%end%>
+		<td><span class="btn btn-primary"> <%= link_to "Order Details", order_path(id: order.id), style: "color: white" %></span> </td>
+	</tr>
+	<% end %>
+	</tbody>
+</table>
+<% else %>
+	<h3>You Don't have Placed any orders yet!!. You should try our taste. Thanks</h3>
+<% end %>

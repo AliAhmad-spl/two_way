@@ -1,9 +1,15 @@
 <div class="container">
 <%= form_with(model: order, local: true) do |form| %>
+
+<% if current_user.sale? || current_user.admin? %>
   <div class="actions">
     <%= form.submit 'Preview Order', :class => 'btn btn-success pull-right'  %>
   </div>
-  
+  <%else%>
+    <div class="actions">
+    <%= form.submit 'Place Order', :class => 'btn btn-success pull-right'  %>
+  </div>
+  <%end%>
   <% if order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -16,15 +22,36 @@
     </div>
   <% end %>
 
+<% if current_user.sale? || current_user.admin? %>
   <div class="field">
     <%= form.label :Table_Number %>
     <%= form.text_field :customer_name, class: 'form-control', style: "width: 30%;", required: true %>
   </div>
    <div class="field">
     <%= form.label :Discount_In_progress_not_working %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
     <%#= form.number_field :discount, class: 'form-control', style: "width: 30%;" %>
   </div>
-
+<%end%>
+<% if !current_user.sale? && !current_user.admin? %>
+  <div class="field">
+    <%= form.label :Contact_Number %>
+    <%= form.number_field :contact_number, class: 'form-control', style: "width: 30%;", required: true %>
+  </div>
+   <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, class: 'form-control', style: "width: 30%;", required: true %>
+  </div>
+     <div class="field">
+    <%= form.label :Special_notes %>
+    <%= form.text_area :special_notes, class: 'form-control', placeholder: 'e.g: extra mayo',style: "width: 30%;" %>
+  </div>
+   <div class="field">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :customer, value: true %>
+    <%#= form.number_field :discount, class: 'form-control', style: "width: 30%;" %>
+  </div>
+  <%end%>
 
   <div class="container">
            <div class="row">
@@ -33,11 +60,12 @@
 
  
 
-   <div class="col-md-4 col">
+   <div class="col-md-6 col">
 
-       <centre><b> <%= one_menu.name %> </b></centre>
-        <%= link_to 'Destroy', one_menu, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm", style: "color: white" %>
-         
+       <center><b> <%= one_menu.name %> </b>
+        <%if current_user.sale? || current_user.admin? %>
+          <%= link_to 'Destroy', one_menu, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm", style: "color: white" %>
+         <%end%></center>
           
           <% one_menu.products.each_with_index do |product, index| %>
           
@@ -46,7 +74,7 @@
             <ul>
             <li>
               <span style="float: left;">
-                <%= form.check_box("product_ids", {:multiple => true}, "#{product.id}", nil) %><%= product.name%> <input type="number" name="order[quntities][]" value="1" style="width:3em"></span> <span style="float: right;"><%= product.price %></span> 
+                <%= form.check_box("product_ids", {:multiple => true}, "#{product.id}", nil) %><%= product.name%> <%= form.number_field :quntity, value: "1"%></span> <span style="float: right;"><%= product.price %></span> 
             </li>
             </ul>
        

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :expenses
-  resources :orders
+  resources :orders do
+  	collection do
+  		get :status
+  		get :inbox
+  	end
+  end
   resources :one_menus
   resources :products
   devise_for :users
