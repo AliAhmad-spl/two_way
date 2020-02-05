@@ -13,6 +13,14 @@
  *= require_tree .
  *= require_self
  */
+.col-container {
+  width: 100%;
+}
+.col {
+  padding: 16px;
+  border: 1px solid white;
+  box-shadow: 1px 1px 5px #C0C0C0;
+}
 .center_div{
     margin: 0 auto;
     width:80% /* value of your choice which suits your alignment */
