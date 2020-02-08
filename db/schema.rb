@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 2020_02_05_183857) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "menus", force: :cascade do |t|
+    t.string "name"
+    t.integer "quntity"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "one_menus", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -37,10 +45,10 @@ ActiveRecord::Schema.define(version: 2020_02_05_183857) do
     t.integer "quntities", default: [], array: true
     t.integer "user_id"
     t.integer "status", default: 0
-    t.boolean "customer"
     t.string "contact_number"
     t.string "address"
     t.text "special_notes"
+    t.boolean "customer"
   end
 
   create_table "products", force: :cascade do |t|
