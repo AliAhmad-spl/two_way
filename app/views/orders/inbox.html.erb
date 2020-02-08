@@ -35,3 +35,10 @@
 <% else %>
 	<center><h3>You don't have received any orders yet!!</h3></center>
 <% end %>
+
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @orders %>
+    </div>
+    <%= will_paginate @orders, :container => false %>
+</div>

@@ -24,12 +24,14 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    byebug
     quntities = []
     quntities = order_params[:quntities].reject(&:blank?)
     @order = Order.new(order_params)
     respond_to do |format|
       if @order.save
+        if current_user.sale?
+          @order.update(status: 'delivered')
+        end
         @order.update(index: quntities)
         format.html { redirect_to @order }
         format.json { render :show, status: :created, location: @order }
@@ -41,7 +43,7 @@ class OrdersController < ApplicationController
   end
 
   def status
-   @orders = current_user.orders    
+   @orders = current_user.orders.paginate(page: params[:page])    
   end
 
   # PATCH/PUT /orders/1
@@ -59,7 +61,7 @@ class OrdersController < ApplicationController
   end
 
   def inbox
-    @orders = Order.where(customer: true)
+    @orders = Order.where(customer: true).paginate(page: params[:page])
   end
 
   # DELETE /orders/1
