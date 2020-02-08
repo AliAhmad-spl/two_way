@@ -56,9 +56,8 @@
   <div class="container">
            <div class="row">
 <div class="col-container">
-    <% @one_menus.each do |one_menu| %>
-
- 
+    <% @one_menus.each_with_index do |one_menu, plus| %>
+      <% plus + 1 %>
 
    <div class="col-md-6 col">
 
@@ -66,16 +65,14 @@
         <%if current_user.sale? || current_user.admin? %>
           <%= link_to 'Destroy', one_menu, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm", style: "color: white" %>
          <%end%></center>
-          
           <% one_menu.products.each_with_index do |product, index| %>
-          
-        
-
             <ul>
             <li>
               <span style="float: left;">
-                <%= form.check_box("product_ids", {:multiple => true}, "#{product.id}", nil) %><%= product.name%> <%= form.number_field :quntity, value: "1"%></span> <span style="float: right;"><%= product.price %></span> 
-            </li>
+                <%= form.check_box("product_ids", {:multiple => true, id: "myCheck1#{plus}#{index}", onclick: "myFunction(1#{plus}#{index})"}, "#{product.id}", nil) %><%= product.name%>
+        <input type="number" name="order[quntities][]" 
+        id="text1<%= plus %><%= index %>" style="display:none; width:3em;"></span> <span style="float: right;"><%= product.price %></span> 
+                  </li>
             </ul>
        
           <% end %>  
@@ -88,3 +85,19 @@
 <% end %>
 
 </div>
+<script type="text/javascript">
+  function myFunction(index) {
+  // Get the checkbox
+  var checkBox = document.getElementById("myCheck"+index);
+  // Get the output text
+  var text = document.getElementById("text"+index);
+
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    text.style.display = "inline";
+    document.getElementById("text"+index).required = true;
+  } else {
+    text.style.display = "none";
+  }
+}
+</script>

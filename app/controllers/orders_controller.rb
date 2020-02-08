@@ -25,9 +25,12 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     byebug
+    quntities = []
+    quntities = order_params[:quntities].reject(&:blank?)
     @order = Order.new(order_params)
     respond_to do |format|
       if @order.save
+        @order.update(index: quntities)
         format.html { redirect_to @order }
         format.json { render :show, status: :created, location: @order }
       else
