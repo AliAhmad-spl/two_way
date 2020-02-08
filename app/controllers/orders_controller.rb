@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     respond_to do |format|
       if @order.save
-        if current_user.sale?
+        if current_user.sale? || current_user.admin?
           @order.update(status: 'delivered')
         end
         @order.update(index: quntities)
@@ -69,7 +69,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

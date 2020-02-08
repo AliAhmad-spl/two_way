@@ -59,7 +59,7 @@
     <% @one_menus.each_with_index do |one_menu, plus| %>
       <% plus + 1 %>
 
-   <div class="col-md-6 col">
+   <div class="col-md-12 col">
 
        <center><b> <%= one_menu.name %> </b>
         <%if current_user.sale? || current_user.admin? %>
