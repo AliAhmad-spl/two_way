@@ -29,7 +29,9 @@
 			<td ><span class="btn btn-warning"><%= link_to "Order details", order_path(id: order.id), style: "color: white;" %></span></td>
 			<td> <%= link_to "Accepted", order_path(id: order.id, status: "accepted"), method: :put%> </td>
 			<td> <%= link_to "Delivered", order_path(id: order.id, status: "delivered"), method: :put%> </td>
-			<td> <%= link_to "Rejected", order_path(id: order.id, status: "rejected"), method: :put%> </td>
+			<% if order.status == 'placed' || order.status == 'accepted'%>
+				<td><%= link_to "Rejected", order_path(id: order.id, status: "rejected"), method: :put%></td>
+			<%end%>
 		</tr>
 		<% end %>
 	</table>

@@ -27,8 +27,8 @@
 				<td ><span class="btn btn-warning"><%= order&.status  %></span></td>
 			<%end%>
 		<td><span class="btn btn-primary"> <%= link_to "Order Details", order_path(id: order.id), style: "color: white" %></span> </td>
-		<% if order.status == 'placed' %>
-		<td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+		<% if order.status == 'placed' || order.status == 'rejected' %>
+		<td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', style: "color: white;" %></td>
 		<%end%>
 	</tr>
 	<% end %>
