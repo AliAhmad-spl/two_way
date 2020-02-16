@@ -28,7 +28,7 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to expense_path(id: @expense.id), notice: 'Expense was successfully created.' }
+        format.html { redirect_to expenses_path, notice: 'Expense was successfully created.' }
         format.json { render :show, status: :created, location: @expense }
       else
         format.html { render :new }

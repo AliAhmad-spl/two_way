@@ -8,23 +8,23 @@
 <div class="hotel">
 
 <p>
-  <strong>Table number:</strong>
+  Table number:
   <%= @order.customer_name %>
 </p>
 <% @products = Product.where(id: @order.product_ids)%>
-<table >
+<table class="table table-bordered">
 	<tr>
-		<th>product name</th>
-		<th>Quntity</th>
-		<th>unit price</th>
-		<th>total</th>
+		<td>product name</td>
+		<td>Quntity</td>
+		<td>unit price</td>
+		<td>total</td>
 	</tr>
 	<% x = 1 %>
 	<% y = 1 %>
 
 	<%@products&.each_with_index do |product, i|%>
 	<tr>
-		<td><%= product.name %></td>
+		<td style="font-size: 10px;"><%= product.name %>		</td>
 		<td><input type="number" name="quantity" min="1" max="100" id="box1_<%= y %>" value="<%= @order.index[i]%>" oninput="calculate();"></td>
 		<td id="box2_<%= y %>" oninput=""><%= product.price %></td>
 		<td id="result_<%= x %>"><%= product.price %></td>
@@ -38,7 +38,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
-	<span style="font-size: 20px;" > Grand total:</span> <span id="grand_total" class="pull-right" style="font-size: 20px;">0</span>
+	<span style="font-size: 15px;" > Grand total:</span> <span id="grand_total" class="pull-right" style="font-size: 15px;">0</span>
 
 </div>
 </div>
@@ -48,7 +48,7 @@
 	<button onclick="removebtn()" id="print" class="btn btn-danger">Print recipte</button>
 <%end%>
 
-<center><h4 style="font-style: oblique;">Thank you for visiting here</h4><p>onewaycafe|03216466017</p></center>
+<center><h4 style="font-style: oblique; font-size: 18px;">Thank you for visiting here</h4><p>onewaycafe|03216466017</p></center>
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
