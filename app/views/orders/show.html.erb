@@ -12,11 +12,11 @@
   <%= @order.customer_name %>
 </p>
 <% @products = Product.where(id: @order.product_ids)%>
-<table class="table table-bordered">
+<table >
 	<tr>
 		<th>product name</th>
 		<th>Quntity</th>
-		<th>price</th>
+		<th>unit price</th>
 		<th>total</th>
 	</tr>
 	<% x = 1 %>

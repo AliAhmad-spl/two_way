@@ -1,19 +1,15 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @expense.description %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @expense.amount %>
-</p>
-
-<p>
-  <strong>Current sales person name:</strong>
-  <%= @expense.current_sales_person_name %>
-</p>
-
+<table class="table table-bordered">
+<tr>
+	<th><strong>Description:</strong></th>
+  	<th><strong>Amount:</strong></th>
+  	<th><strong>Current sales person name:</strong></th>
+</tr>
+<tr>
+	<td><%= @expense.description %></td>
+	<td><%= @expense.amount %></td>
+	<td><%= @expense.current_sales_person_name %></td>
+</tr>
+</table>
 <%= link_to 'Edit', edit_expense_path(@expense) %> |
 <%= link_to 'Back', expenses_path %>

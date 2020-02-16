@@ -4,7 +4,7 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.all
+    @expenses = Expense.paginate(page: params[:page])
   end
 
   # GET /expenses/1
@@ -28,7 +28,7 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to root_path, notice: 'Expense was successfully created.' }
+        format.html { redirect_to expense_path(id: @expense.id), notice: 'Expense was successfully created.' }
         format.json { render :show, status: :created, location: @expense }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ExpensesController < ApplicationController
   def update
     respond_to do |format|
       if @expense.update(expense_params)
-        format.html { redirect_to root_path, notice: 'Expense was successfully updated.' }
+        format.html { redirect_to expense_path(id: @expense.id), notice: 'Expense was successfully updated.' }
         format.json { render :show, status: :ok, location: @expense }
       else
         format.html { render :edit }

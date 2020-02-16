@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'New Expense', new_expense_path, class: "btn btn-success", style: "color: white;" %>
+<%= link_to 'back to home', root_path, class: "btn btn-warning", style: "color: white;" %>
+
 <h1>Expenses</h1>
 
 <table class="table table-bordered">
@@ -25,8 +28,12 @@
     <% end %>
   </tbody>
 </table>
-
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @orders %>
+    </div>
+    <%= will_paginate @orders, :container => false %>
+</div>
 <br>
 
-<%= link_to 'New Expense', new_expense_path, class: "btn btn-success", style: "color: white;" %>
-<%= link_to 'back to home', root_path, class: "btn btn-warning", style: "color: white;" %>
+
