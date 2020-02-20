@@ -34,14 +34,6 @@
   </div>
 <%end%>
 <% if !current_user.sale? && !current_user.admin? %>
-  <div class="field">
-    <%= form.label :Contact_Number %>
-    <%= form.number_field :contact_number, class: 'form-control', style: "width: 30%;", required: true %>
-  </div>
-   <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address, class: 'form-control', style: "width: 30%;", required: true %>
-  </div>
      <div class="field">
     <%= form.label :Special_notes %>
     <%= form.text_area :special_notes, class: 'form-control', placeholder: 'e.g: extra mayo',style: "width: 30%;" %>
@@ -71,7 +63,7 @@
               <span style="float: left;">
                 <%= form.check_box("product_ids", {:multiple => true, id: "myCheck1#{plus}#{index}", onclick: "myFunction(1#{plus}#{index})"}, "#{product.id}", nil) %><%= product.name%>
         <input type="number" name="order[quntities][]" 
-        id="text1<%= plus %><%= index %>" min="1" style="display:none; width:3em;"></span> <span style="float: right;"><%= product.price %></span> 
+        id="text1<%= plus %><%= index %>" min="1" style="display:none; width:4em;" placeholder="Qty"></span> <span style="float: right;"><%= product.price %></span> 
                   </li>
             </ul>
        

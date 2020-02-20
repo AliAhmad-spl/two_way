@@ -13,9 +13,9 @@
 			
 		<% @orders.each do |order|%>	
 		<tr>
-			<td><%= order.user.email.split('@').first %></td>
-			<td><%= order&.contact_number %></td>
-			<td><%= order&.address %></td>
+			<td><%= order.user.name %></td>
+			<td><%= order&.user.contact %></td>
+			<td><%= order&.user.address %></td>
 			<td><%= order&.special_notes %></td>
 			<% if order.status == "delivered" %>
 				<td ><span class="btn btn-success"><%= order&.status  %></span></td>
