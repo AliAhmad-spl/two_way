@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   	collection do
   		get :status
   		get :inbox
+      get :all_users
   	end
   end
   resources :one_menus

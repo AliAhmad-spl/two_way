@@ -21,6 +21,11 @@ class OrdersController < ApplicationController
   def edit
   end
 
+  def all_users
+   @users = User.paginate(page: params[:page])
+  end
+    
+
   # POST /orders
   # POST /orders.json
   def create

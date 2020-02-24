@@ -21,6 +21,9 @@
 	  <%= link_to 'Expenses', expenses_path, class: "btn btn-warning", style: "color: white;"%>
 	 <% if current_user.admin? %>
 	 	<%= link_to 'History', orders_path, class: "btn btn-warning", style: "color: white;" %>
+
+	 	<a type="button" style="color: white;" class="btn btn-success" href="<%= all_users_orders_path%>">
+  			Total users <span class="badge badge-light"><%=User.count%></span>
 	 	<%= link_to 'All products', products_path, class: "btn btn-warning", style: "color: white;" %>
 	 <%end%>
  <%end%>
