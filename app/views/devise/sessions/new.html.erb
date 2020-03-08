@@ -2,8 +2,8 @@
 <div class="container center_div">
 <p style="float: right;"><%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %></p>
   <div class="form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+    <%= f.label :email_phone_username %>
+    <%= f.text_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
   </div>
 
   <div class="form-group">
