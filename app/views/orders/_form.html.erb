@@ -54,7 +54,7 @@
    <div class="col-md-12 col">
 
        <center><b> <%= one_menu.name %> </b>
-        <%if current_user.sale? || current_user.admin? %>
+        <%if current_user.admin? %>
           <%= link_to 'Destroy', one_menu, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm", style: "color: white" %>
          <%end%></center>
           <% one_menu.products.each_with_index do |product, index| %>
