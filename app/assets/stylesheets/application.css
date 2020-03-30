@@ -12,11 +12,9 @@
  *
  *= require_tree .
  *= require_self
- *= require loading_screen
  */
 .mark
 {
-  
   display: none;
   position: absolute;
   height: 25px;
