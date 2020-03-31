@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :expenses
   resources :orders do
   	collection do
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
     sessions: 'sessions',
     registrations: 'registrations'
   }
-  root 'orders#new'
+  root 'home#home'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
