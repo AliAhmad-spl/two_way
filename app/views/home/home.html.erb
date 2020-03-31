@@ -16,10 +16,9 @@
             </a></div>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><%= link_to 'Log in', new_user_session_path %></li>
-                <li><%= link_to 'Register Now', new_user_registration_path %></li>
-                <li><a href="#reservation" style="color: white">Reservation</a></li>
                 
+               <li><b><span style="padding-top: 70px; padding-bottom:70px; line-height: 50px; margin: 10px;"><%= link_to 'Log in', "#{new_user_session_path}", style: "color: white" %></span></b></li>
+               <li><b><span style="padding-top: 70px; padding-bottom: 70px; line-height: 50px; margin: 10px;"> <%= link_to 'Register Now', new_user_registration_path, style: "color: white" %></span></b></li>
 
                 
                 <li><a href="#facts"></a></li>
