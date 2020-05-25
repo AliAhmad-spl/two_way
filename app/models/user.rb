@@ -5,4 +5,6 @@ class User < ApplicationRecord
   	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable
   	has_many :orders
+
+  	validates :name, :email, :contact, uniqueness: true
 end
