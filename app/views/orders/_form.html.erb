@@ -24,7 +24,7 @@
 
 <% if current_user.sale? || current_user.admin? %>
   <div class="field">
-    <%= form.label :Table_Number %>
+    <%= form.label :customer_name %>
     <%= form.text_field :customer_name, class: 'form-control', style: "width: 30%;", required: true %>
   </div>
    <div class="field">
