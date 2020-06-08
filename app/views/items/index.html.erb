@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Add New Item', new_item_path, class:"btn btn-warning", style:"color:white" %>
+<%= link_to 'Home', root_path, class:"btn btn-warning", style:"color:white" %>
+<h1>Items</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+      <th>created by</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.qty_type %></td>
+        <td><%= item.user.name %></td>
+        <td><%= link_to 'Show', item %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if @items.present? %>
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @items %>
+    </div>
+    <%= will_paginate @items, :container => false %>
+</div>
+<%end%>

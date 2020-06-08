@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Home', root_path, class:"btn btn-warning", style:"color:white" %>
+<center><h1>Items</h1></center>
+<div class="container">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Item name</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+      <th>created by</th>
+      <th>transaction</th>
+      <th>action performed by</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @histories.each do |h| %>
+      <tr>
+        <td><%= h.item.name %></td>
+        <td><%= h.quantity %></td>
+        <td><%= h.unit %></td>
+        <td><%= h.item.user.name %></td>
+        <td><%= h.action %></td>
+        <td><%= h.user.name %></td>
+        <td><%= time_ago_in_words(h.created_at) %> ago</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<% if @histories.present? %>
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @histories %>
+    </div>
+    <%= will_paginate @histories, :container => false %>
+</div>
+<%end%>
+</div>
