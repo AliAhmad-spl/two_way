@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_08_185524) do
+ActiveRecord::Schema.define(version: 2020_06_13_204049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_185524) do
     t.boolean "customer"
     t.integer "index", default: [], array: true
     t.integer "discount", default: 0
+    t.integer "total"
   end
 
   create_table "products", force: :cascade do |t|
@@ -75,7 +76,6 @@ ActiveRecord::Schema.define(version: 2020_06_08_185524) do
     t.integer "one_menu_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "product_type", default: 0
   end
 
   create_table "users", force: :cascade do |t|

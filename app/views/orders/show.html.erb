@@ -38,7 +38,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
-	<span style="font-size: 15px;" > Grand total:</span> <span id="grand_total" class="pull-right" style="font-size: 15px;">0</span>
+	<% if @order.discount > 0%>
+
+	<span style="font-size: 15px;" >Total amount:</span> <span id="grand_total" class="pull-right" style="font-size: 15px;"><%= @order.total%></span>
+	<p><span style="font-size: 15px;" > Discounted total:</span> <span class="pull-right"  style="font-size: 15px;"> <%= @order.total%></span></p>
+	<%else%>
+	<span style="font-size: 15px;" >Total amount:</span> <span id="grand_total" class="pull-right" style="font-size: 15px;"><%= @order.total%></span>
+	<%end%>
 
 </div>
 </div>

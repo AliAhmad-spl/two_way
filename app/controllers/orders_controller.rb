@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   def index
     @date             = Date.parse(params[:date]) rescue Date.today
     @orders           = Order.where(:created_at => @date.at_midnight..@date.next_day.at_midnight)
-
+    @today_sale       = @orders.pluck(:total).sum
     @total_orders   = Order.count
     @current_orders = @orders.size
   end
@@ -42,6 +42,16 @@ class OrdersController < ApplicationController
           @order.update(status: 'delivered')
         end
         @order.update(index: quntities)
+        @prices=Product.where(id: @order.product_ids).pluck(:price)
+        @quntities = @order.quntities.compact
+        @zip = @prices.zip(@quntities)
+        if @order.discount > 0
+          discounted = @zip.map{|x, y| x*y}.sum - (@zip.map{|x, y| x*y}.sum * @order.discount/100)
+          @order.update(total: discounted)
+        else
+          @order.update(total: @zip.map{|x, y| x*y}.sum)
+        end
+
         format.html { redirect_to @order }
         format.json { render :show, status: :created, location: @order }
       else
@@ -97,6 +107,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:customer_name, :user_id, :special_notes, :address, :contact_number, :customer, :quntities => [], :product_ids => [])
+      params.require(:order).permit(:customer_name, :user_id, :special_notes, :address, :contact_number, :discount, :customer, :quntities => [], :product_ids => [])
     end
 end
