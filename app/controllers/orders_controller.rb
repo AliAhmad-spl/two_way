@@ -3,7 +3,11 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.paginate(page: params[:page])
+    @date             = Date.parse(params[:date]) rescue Date.today
+    @orders           = Order.where(:created_at => @date.at_midnight..@date.next_day.at_midnight)
+
+    @total_orders   = Order.count
+    @current_orders = @orders.size
   end
 
   # GET /orders/1
