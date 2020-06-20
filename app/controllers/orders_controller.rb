@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
     @date             = Date.parse(params[:date]) rescue Date.today
     @orders           = Order.where(:created_at => @date.at_midnight..@date.next_day.at_midnight)
     @today_sale       = @orders.pluck(:total).sum
+    @p_ids          = @orders.pluck(:product_ids).flatten
     @total_orders   = Order.count
     @current_orders = @orders.size
   end
@@ -23,6 +24,10 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+  end
+
+  def sale_products
+    @products = Product.where(id: params[:p_ids])    
   end
 
   def all_users
