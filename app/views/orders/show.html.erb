@@ -10,6 +10,7 @@
 <p>
   Customer name:
   <%= @order.customer_name %>
+  |serial #: <%= @order.id %>
 </p>
 <% @products = Product.where(id: @order.product_ids)%>
 <table class="table table-bordered">
