@@ -4,21 +4,26 @@
 	}
 </style>
 <p id="notice"><%= notice %></p>
-<%= link_to "Home", root_path, :class => 'navbar-link btn btn-danger btn-sm pull-right', style:'color: white'  %>
-<div class="hotel">
+<%= link_to "Home", root_path, :class => 'navbar-link btn btn-danger btn-sm pull-right', style:'color: white', :onclick=> 'removebtn()'  %>
+
 
 <p>
-  Customer name:
+  Name:
   <%= @order.customer_name %>
-  |serial #: <%= @order.id %>
+</p>
+<p>
+#:<%= @order.id %>
+</p>
+<p>
+Date:<%= @order.created_at.in_time_zone("Islamabad").strftime("%I:%M%p %F") %>
 </p>
 <% @products = Product.where(id: @order.product_ids)%>
 <table class="table table-bordered">
 	<tr>
-		<td>product name</td>
-		<td>Quntity</td>
-		<td>unit price</td>
-		<td>total</td>
+		<td>Name</td>
+		<td>Qty</td>
+		<td>Price</td>
+		<td>Total</td>
 	</tr>
 	<% x = 1 %>
 	<% y = 1 %>
